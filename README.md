@@ -3,7 +3,6 @@
 ## Build & Run ##
 
 ```sh
-$ cd ariot2018_backend
 $ sbt
 > jetty:start
 > browse
