@@ -15,7 +15,15 @@ libraryDependencies ++= Seq(
   "org.scalatra" %% "scalatra-scalatest" % ScalatraVersion % "test",
   "ch.qos.logback" % "logback-classic" % "1.2.3" % "runtime",
   "org.eclipse.jetty" % "jetty-webapp" % "9.4.8.v20171121" % "container",
-  "javax.servlet" % "javax.servlet-api" % "3.1.0" % "provided"
+  "javax.servlet" % "javax.servlet-api" % "3.1.0" % "provided",
+  "org.scalikejdbc" %% "scalikejdbc" % "3.2.1",
+  "com.auth0" % "java-jwt" % "3.0.1",
+  "com.corundumstudio.socketio" % "netty-socketio" % "1.7.14",
+  "ch.qos.logback" % "logback-classic" % "1.2.3",
+  "org.json4s" %% "json4s-jackson" % "3.5.3",
+  "org.scalatra" %% "scalatra-json" % "2.6.2",
+  "org.scalikejdbc" %% "scalikejdbc-config"  % "3.2.1",
+  "org.postgresql" % "postgresql" % "42.2.1"
 )
 
 enablePlugins(SbtTwirl)
