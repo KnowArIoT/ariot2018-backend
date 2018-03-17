@@ -47,5 +47,9 @@ package object backend {
   )
 
   case class MultipleSensorInserts(bed_id: String, data: List[SensorValue])
-  case class SensorValue(id: String, value: Int)
+  case class SensorValue(name: String, value: Float)
+
+  case class SensorResults(sensorStatistics: List[SensorResultSensor])
+  case class SensorResultSensor(sensor_id: String, history: List[SensorResultSensorMinute])
+  case class SensorResultSensorMinute(minuteOfTime: String, averageSensorValue: Float)
 }

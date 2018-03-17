@@ -1,4 +1,6 @@
 <configuration>
+  <property name="USER_HOME" value="/home/anders" />
+
   <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
     <!-- encoders are assigned the type
          ch.qos.logback.classic.encoder.PatternLayoutEncoder by default -->
@@ -7,7 +9,22 @@
     </encoder>
   </appender>
 
-  <root level="info">
-    <appender-ref ref="STDOUT" />
+  <appender name="SPRING_LOGS" class="ch.qos.logback.core.FileAppender">
+    <file>${USER_HOME}/spring.log</file>
+    <encoder>
+      <pattern>%msg%n</pattern>
+    </encoder>
+  </appender>
+
+  <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+    <file>${USER_HOME}/myApp.log</file>
+    <encoder>
+      <pattern>%msg%n</pattern>
+    </encoder>
+  </appender>
+
+  <root level="debug">
+    <appender-ref ref="FILE" />
   </root>
+
 </configuration>

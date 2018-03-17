@@ -7,7 +7,7 @@ import scalikejdbc._
 
 class SensorDatabase(implicit val ZONEID: ZoneId) {
   def getStatsSince(time: ZonedDateTime): List[SensorData] = DB readOnly { implicit session =>
-    sql"SELECT * FROM zzzmartbed.sensor_data AS sd WHERE sd.datetime < $time".map(rs => SensorData(
+    sql"SELECT * FROM zzzmartbed.sensor_data AS sd WHERE sd.datetime > $time".map(rs => SensorData(
       id = Some(rs.int("id")),
       sensor_id = rs.string("sensor_id"),
       value = rs.float("value"),
@@ -21,7 +21,7 @@ class SensorDatabase(implicit val ZONEID: ZoneId) {
   def delete(key: String): Any = ???
 
   def insertRecords(msi: MultipleSensorInserts): Unit = DB localTx  { implicit session =>
-    val batchParams = msi.data.map(sensorValue => List(sensorValue.id, sensorValue.value, ZonedDateTime.now(ZONEID), 1, 1))
+    val batchParams = msi.data.map(sensorValue => List(sensorValue.name, sensorValue.value, ZonedDateTime.now(ZONEID), 1, 1))
     sql"INSERT INTO zzzmartbed.sensor_data(sensor_id, value, datetime, user_id, bed_id) VALUES (?, ?, ?, ?, ?)".batch(batchParams: _*).apply()
   }
 
